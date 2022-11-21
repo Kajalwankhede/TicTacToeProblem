@@ -1,20 +1,23 @@
 package com.tictactoegame;
+import java.util.Random;
 import java.util.Scanner;
 public class TicTacToeGame {
+    public static final int HEAD = 0;
+    public static final int TAIL = 1;
     static Scanner sc = new Scanner(System.in);
     private static char computer;
     private static char player;
-
+    private static  char[][] gameBoard = {{'_', '|', '_', '|', '_'}, {'_', '|', '_', '|', '_'}, {' ', '|', ' ', '|', ' '}};
     public static void main(String[] args) {
         System.out.println("\n*** WELCOME TO TIC TAC TOE GAME ***");
-        char[][] gameBoard = {{'_', '|', '_', '|', '_'}, {'_', '|', '_', '|', '_'}, {' ', '|', ' ', '|', ' '}};
         dispayBoard(gameBoard);
         chooseLetter();
         System.out.println("Show Current Board: ");
         dispayBoard(gameBoard);
         playerMove(gameBoard);
+        computerMove(gameBoard);
+        tossToPlay();
     }
-
     public static void dispayBoard(char[][] gameBoard) {  ///Display the game board
         for (int row = 0; row < gameBoard.length; row++) {  /// for the rows
             for (int col = 0; col < gameBoard[0].length; col++) {// for column
@@ -23,7 +26,6 @@ public class TicTacToeGame {
             System.out.println();
         }
     }
-
     public static void chooseLetter() {
         System.out.println("Choose Letter X or O");
         char letter = sc.next().charAt(0);
@@ -34,7 +36,6 @@ public class TicTacToeGame {
         }
         System.out.println("Player Choose letter:" + player);
     }
-
     public static void playerMove(char[][] gameBoard) {  //Ask player Position where whould like to move
         System.out.println("Please make a move. (1-9)");
         System.out.println("-----------------------------------------------------------");
@@ -47,6 +48,17 @@ public class TicTacToeGame {
         }
         System.out.println("Player moved at position " + move);
         updateBoard(move,1,gameBoard);
+    }
+    public static void computerMove(char [][] gameBoard){// For Playing computer
+        Random rand = new Random();  // used random function to play randomly by computer
+        int move = rand.nextInt(9)+1;
+        boolean result = isValidMove(move,gameBoard);
+        while(!result){
+            move = rand.nextInt(9)+1;
+            result = isValidMove(move, gameBoard);
+        }
+        System.out.println("Computer moved at position "+ move);
+        updateBoard(move,2,gameBoard);
     }
 
     public static boolean isValidMove(int move, char[][] gameboard) { // Takes Move input from player
@@ -156,5 +168,18 @@ public class TicTacToeGame {
             default:
                 break;
         }
+    }
+    public static void tossToPlay(){
+       int tossResult=(int) (Math.floor(Math.random()*10)%2);
+       if ((tossResult==HEAD))
+       {
+           System.out.println("Player will start");
+           playerMove(gameBoard);
+       }
+       else {
+           System.out.println("Computer will start");
+           computerMove(gameBoard);
+
+       }
     }
 }
