@@ -7,9 +7,9 @@ public class TicTacToeGame {
     static Scanner sc = new Scanner(System.in);
     private static char computer;
     private static char player;
-    private static  char[][] gameBoard = {{'_', '|', '_', '|', '_'}, {'_', '|', '_', '|', '_'}, {' ', '|', ' ', '|', ' '}};
-     static int playerScore=0;
-     static int computerScore=0;
+    static char[][] gameBoard = {{'_', '|', '_', '|', '_'}, {'_', '|', '_', '|', '_'}, {' ', '|', ' ', '|', ' '}};
+    static int playerScore = 0;
+    static int computerScore = 0;
 
     public static void main(String[] args) {
         System.out.println("\n*** WELCOME TO TIC TAC TOE GAME ***");
@@ -21,7 +21,9 @@ public class TicTacToeGame {
         computerMove(gameBoard);
         tossToPlay();
         isWnnerOrTie(gameBoard);
+        ChooseCorner(gameBoard);
     }
+
     public static void dispayBoard(char[][] gameBoard) {  ///Display the game board
         for (int row = 0; row < gameBoard.length; row++) {  /// for the rows
             for (int col = 0; col < gameBoard[0].length; col++) {// for column
@@ -30,6 +32,7 @@ public class TicTacToeGame {
             System.out.println();
         }
     }
+
     public static void chooseLetter() {
         System.out.println("Choose Letter X or O");
         char letter = sc.next().charAt(0);
@@ -40,6 +43,7 @@ public class TicTacToeGame {
         }
         System.out.println("Player Choose letter:" + player);
     }
+
     public static void playerMove(char[][] gameBoard) {  //Ask player Position where whould like to move
         System.out.println("Please make a move. (1-9)");
         System.out.println("-----------------------------------------------------------");
@@ -51,18 +55,19 @@ public class TicTacToeGame {
             result = isValidMove(move, gameBoard);
         }
         System.out.println("Player moved at position " + move);
-        updateBoard(move,1,gameBoard);
+        updateBoard(move, 1, gameBoard);
     }
-    public static void computerMove(char [][] gameBoard){// For Playing computer
+
+    public static void computerMove(char[][] gameBoard) {// For Playing computer
         Random rand = new Random();  // used random function to play randomly by computer
-        int move = rand.nextInt(9)+1;
-        boolean result = isValidMove(move,gameBoard);
-        while(!result){
-            move = rand.nextInt(9)+1;
+        int move = rand.nextInt(9) + 1;
+        boolean result = isValidMove(move, gameBoard);
+        while (!result) {
+            move = rand.nextInt(9) + 1;
             result = isValidMove(move, gameBoard);
         }
-        System.out.println("Computer moved at position "+ move);
-        updateBoard(move,2,gameBoard);
+        System.out.println("Computer moved at position " + move);
+        updateBoard(move, 2, gameBoard);
     }
 
     public static boolean isValidMove(int move, char[][] gameboard) { // Takes Move input from player
@@ -125,14 +130,15 @@ public class TicTacToeGame {
                 return false;
         }
     }
-    public static void updateBoard( int position, int player, char [][] gameBoard){
+
+    public static void updateBoard(int position, int player, char[][] gameBoard) {
         char character;
-        if(player==1){
+        if (player == 1) {
             character = 'X';   // player =1 having X character
-        }else{
+        } else {
             character = 'O';  // Computer =2 having O character
         }
-        switch (position){
+        switch (position) {
             case 1:
                 gameBoard[0][0] = character; //  if the player or computer chose first position.
                 dispayBoard(gameBoard);
@@ -173,102 +179,102 @@ public class TicTacToeGame {
                 break;
         }
     }
-    public static void tossToPlay(){
-       int tossResult=(int) (Math.floor(Math.random()*10)%2);
-       if ((tossResult==HEAD))
-       {
-           System.out.println("Player Turn:");
-           System.out.println("Player will start");
-           playerMove(gameBoard);
-       }
-       else {
-           System.out.println("Computer Turn:");
-           System.out.println("Computer will start");
-           computerMove(gameBoard);
 
-       }
+    public static void tossToPlay() {
+        int tossResult = (int) (Math.floor(Math.random() * 10) % 2);
+        if ((tossResult == HEAD)) {
+            System.out.println("Player Turn:");
+            System.out.println("Player will start");
+            playerMove(gameBoard);
+        } else {
+            System.out.println("Computer Turn:");
+            System.out.println("Computer will start");
+            computerMove(gameBoard);
+
+        }
     }
-    public static boolean isWnnerOrTie(char [][] gameboard){// Checking if win condition has met is to check all spaces in combination are samw
+
+    public static boolean isWnnerOrTie(char[][] gameboard) {// Checking if win condition has met is to check all spaces in combination are samw
 
         //Horizontal Win
-        if(gameboard[0][0] == 'X'&& gameboard[0][2] == 'X' && gameboard [0][4] == 'X' ){
+        if (gameboard[0][0] == 'X' && gameboard[0][2] == 'X' && gameboard[0][4] == 'X') {
             System.out.println("Player Wins");
             playerScore++;
             return true;
         }
-        if(gameboard[0][0] == 'O'&& gameboard[0][2] == 'O' && gameboard [0][4] == 'O' ){
+        if (gameboard[0][0] == 'O' && gameboard[0][2] == 'O' && gameboard[0][4] == 'O') {
             System.out.println("Computer Wins");
             computerScore++;
             return true;
         }
-        if(gameboard[1][0] == 'X'&& gameboard[1][2] == 'X' && gameboard [1][4] == 'X' ){
+        if (gameboard[1][0] == 'X' && gameboard[1][2] == 'X' && gameboard[1][4] == 'X') {
             System.out.println("Player Wins");
             playerScore++;
             return true;
         }
-        if(gameboard[1][0] == 'O'&& gameboard[1][2] == 'O' && gameboard [1][4] == 'O' ){
+        if (gameboard[1][0] == 'O' && gameboard[1][2] == 'O' && gameboard[1][4] == 'O') {
             System.out.println("Computer Wins");
             computerScore++;
             return true;
         }
-        if(gameboard[2][0] == 'X'&& gameboard[2][2] == 'X' && gameboard [2][4] == 'X' ){
+        if (gameboard[2][0] == 'X' && gameboard[2][2] == 'X' && gameboard[2][4] == 'X') {
             System.out.println("Player Wins");
             playerScore++;
             return true;
         }
-        if(gameboard[2][0] == 'O'&& gameboard[2][2] == 'O' && gameboard [2][4] == 'O' ) {
+        if (gameboard[2][0] == 'O' && gameboard[2][2] == 'O' && gameboard[2][4] == 'O') {
             System.out.println("Computer Wins");
             computerScore++;
             return true;
         }
         //Vertical Wins
-        if(gameboard[0][0] == 'X'&& gameboard[1][0] == 'X' && gameboard [2][0] == 'X' ){
+        if (gameboard[0][0] == 'X' && gameboard[1][0] == 'X' && gameboard[2][0] == 'X') {
             System.out.println("Player Wins");
             playerScore++;
             return true;
         }
-        if(gameboard[0][0] == 'O'&& gameboard[1][0] == 'O' && gameboard [2][0] == 'O' ){
+        if (gameboard[0][0] == 'O' && gameboard[1][0] == 'O' && gameboard[2][0] == 'O') {
             System.out.println("Computer Wins");
             computerScore++;
             return true;
         }
-        if(gameboard[0][2] == 'X'&& gameboard[1][2] == 'X' && gameboard [2][2] == 'X' ){
+        if (gameboard[0][2] == 'X' && gameboard[1][2] == 'X' && gameboard[2][2] == 'X') {
             System.out.println("Player Wins");
             playerScore++;
             return true;
         }
-        if(gameboard[0][2] == 'O'&& gameboard[1][2] == 'O' && gameboard [2][2] == 'O' ){
+        if (gameboard[0][2] == 'O' && gameboard[1][2] == 'O' && gameboard[2][2] == 'O') {
             System.out.println("Computer Wins");
             computerScore++;
             return true;
         }
-        if(gameboard[0][4] == 'X'&& gameboard[1][4] == 'X' && gameboard [2][4] == 'X' ){
+        if (gameboard[0][4] == 'X' && gameboard[1][4] == 'X' && gameboard[2][4] == 'X') {
             System.out.println("Player Wins");
             playerScore++;
             return true;
         }
-        if(gameboard[0][4] == 'O'&& gameboard[1][4] == 'O' && gameboard [2][4] == 'O' ){
+        if (gameboard[0][4] == 'O' && gameboard[1][4] == 'O' && gameboard[2][4] == 'O') {
             System.out.println("Computer Wins");
             computerScore++;
             return true;
         }
         //Diagonal Wins
-        if(gameboard[0][0] == 'X'&& gameboard[1][2] == 'X' && gameboard [2][4] == 'X' ){
+        if (gameboard[0][0] == 'X' && gameboard[1][2] == 'X' && gameboard[2][4] == 'X') {
             System.out.println("Player Wins");
             playerScore++;
             return true;
         }
-        if(gameboard[0][0] == 'O'&& gameboard[1][2] == 'O' && gameboard [2][4] == 'O' ){
+        if (gameboard[0][0] == 'O' && gameboard[1][2] == 'O' && gameboard[2][4] == 'O') {
             System.out.println("Computer Wins");
             computerScore++;
             return true;
         }
-        if(gameboard[2][0] == 'X'&& gameboard[1][2] == 'X' && gameboard [0][4] == 'X' ){
+        if (gameboard[2][0] == 'X' && gameboard[1][2] == 'X' && gameboard[0][4] == 'X') {
             System.out.println("Player Wins");
             playerScore++;
             return true;
         }
-        if(gameboard[2][0] == 'O'&& gameboard[1][2] == 'O' && gameboard [0][4] == 'O' ){
+        if (gameboard[2][0] == 'O' && gameboard[1][2] == 'O' && gameboard[0][4] == 'O') {
             System.out.println("Computer Wins");
             computerScore++;
             return true;
@@ -281,4 +287,21 @@ public class TicTacToeGame {
         return false;
     }
 
-}
+    public static void ChooseCorner(char[][] gameboard) {
+        for (int row = 0; row < gameBoard.length; row++) {  /// for the rows
+            for (int col = 0; col < gameBoard[0].length; col++) {// for column
+            }
+            System.out.println();
+        }
+            if (gameboard[0][0] == '_') {  // if position empty then return true
+                System.out.println("Corner 1 is available");
+            } else if (gameboard[0][4] == '_') {
+                System.out.println("Corner 3 is available");
+            } else if (gameboard[2][0] == ' ') {
+                System.out.println("Corner 7 is available");
+            } else if (gameboard[2][4] == ' ') {
+                System.out.println("Corner 9 is available");
+            }
+        }
+    }
+
