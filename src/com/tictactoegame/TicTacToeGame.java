@@ -21,7 +21,7 @@ public class TicTacToeGame {
         computerMove(gameBoard);
         tossToPlay();
         isWnnerOrTie(gameBoard);
-        ChooseCorner(gameBoard);
+        //ChooseCorner(gameBoard);
     }
 
     public static void dispayBoard(char[][] gameBoard) {  ///Display the game board
@@ -288,20 +288,46 @@ public class TicTacToeGame {
     }
 
     public static void ChooseCorner(char[][] gameboard) {
+        boolean corner = false;
         for (int row = 0; row < gameBoard.length; row++) {  /// for the rows
             for (int col = 0; col < gameBoard[0].length; col++) {// for column
             }
             System.out.println();
         }
-            if (gameboard[0][0] == '_') {  // if position empty then return true
-                System.out.println("Corner 1 is available");
-            } else if (gameboard[0][4] == '_') {
-                System.out.println("Corner 3 is available");
-            } else if (gameboard[2][0] == ' ') {
-                System.out.println("Corner 7 is available");
-            } else if (gameboard[2][4] == ' ') {
-                System.out.println("Corner 9 is available");
-            }
+        if (gameboard[0][0] == '_') {  // if position empty then return true
+            System.out.println("Corner 1 is available");
+            corner = true;
+        } else if (gameboard[0][4] == '_') {
+            System.out.println("Corner 3 is available");
+            corner = true;
+        } else if (gameboard[2][0] == ' ') {
+            System.out.println("Corner 7 is available");
+            corner = true;
+        } else if (gameboard[2][4] == ' ') {
+            System.out.println("Corner 9 is available");
+            corner = true;
         }
+        if (corner!=true){
+            System.out.println("No corner availabel");
+            subsequentChoice(gameboard);
+        }
+
+    }
+    public static void subsequentChoice(char[][] gameboard) {
+        boolean middle=false;
+        if (gameboard[1][2] == '_') {
+            System.out.println("middle 5 is available");
+            middle= true;
+        }
+        if (gameboard[0][2] == '_') {  // if position empty then return true
+            System.out.println("Corner 2 is available");
+        } else if (gameboard[1][0] == '_') {
+            System.out.println("Corner 4 is available");
+        } else if (gameboard[1][4] == ' ') {
+            System.out.println("Corner 6 is available");
+        } else if (gameboard[2][2] == ' ') {
+            System.out.println("Corner 8 is available");
+        }
+    }
     }
 
