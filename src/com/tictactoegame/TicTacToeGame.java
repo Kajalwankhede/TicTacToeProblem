@@ -281,7 +281,8 @@ public class TicTacToeGame {
         }
         if (gameboard[0][0] != '_' && gameboard[0][2] != '_' && gameboard[0][4] != '_' && gameboard[1][0] != '_' &&
                 gameboard[1][2] != '_' && gameboard[1][4] != '_' && gameboard[2][0] != ' ' && gameboard[2][2] != ' ' && gameboard[2][4] != ' ') {
-            System.out.println("Its a tie");
+            System.out.println("-------------Board is full-------------------");
+            System.out.println("Its a tie........Try Again");
             return true;
         }
         return false;
@@ -308,7 +309,7 @@ public class TicTacToeGame {
             corner = true;
         }
         if (corner!=true){
-            System.out.println("No corner availabel");
+            System.out.println("No corner available");
             subsequentChoice(gameboard);
         }
 
