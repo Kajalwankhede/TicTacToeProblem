@@ -22,8 +22,46 @@ public class TicTacToeGame {
         tossToPlay();
         isWnnerOrTie(gameBoard);
         //ChooseCorner(gameBoard);
-    }
+        boolean gameOver = false;
+        boolean playAgain = true;
 
+        while(playAgain) { //ask to play again once win or tie player got.
+            while (!gameOver) {
+                playerMove(gameBoard);
+                gameOver = isWnnerOrTie(gameBoard);
+                if (gameOver) {
+                    break;
+                }
+                computerMove(gameBoard);
+                gameOver = isWnnerOrTie(gameBoard);
+                if (gameOver) {
+                    break;
+                }
+            }
+            System.out.println("Player Score: " +playerScore);
+            System.out.println("Computer Score: "+ computerScore);
+            System.out.println("Would you like to play again? Y/N");
+            sc.nextLine();
+            String result = sc.nextLine();
+            switch (result){
+                case "Y":
+                case "y":
+                    playAgain = true;
+                    System.out.println("Dope! Let's play again");
+                    resetBoard(gameBoard);
+                    gameOver = false;
+                    dispayBoard(gameBoard);
+                    break;
+                case "N":
+                case "n":
+                    playAgain = false;
+                    System.out.println("Thanks for playing");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     public static void dispayBoard(char[][] gameBoard) {  ///Display the game board
         for (int row = 0; row < gameBoard.length; row++) {  /// for the rows
             for (int col = 0; col < gameBoard[0].length; col++) {// for column
@@ -330,5 +368,18 @@ public class TicTacToeGame {
             System.out.println("Corner 8 is available");
         }
     }
+    public static void resetBoard(char [][] gameBoard){ // set the board back to beginning state.
+        gameBoard[0][0] = '_';
+        gameBoard[0][2] = '_';
+        gameBoard[0][4] = '_';
+        gameBoard[1][0] = '_';
+        gameBoard[1][2] = '_';
+        gameBoard[1][4] = '_';
+        gameBoard[2][0] = ' ';
+        gameBoard[2][2] = ' ';
+        gameBoard[2][4] = ' ';
+    }
+
+
     }
 
