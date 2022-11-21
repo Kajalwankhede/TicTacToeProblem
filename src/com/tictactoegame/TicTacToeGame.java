@@ -8,6 +8,9 @@ public class TicTacToeGame {
     private static char computer;
     private static char player;
     private static  char[][] gameBoard = {{'_', '|', '_', '|', '_'}, {'_', '|', '_', '|', '_'}, {' ', '|', ' ', '|', ' '}};
+     static int playerScore=0;
+     static int computerScore=0;
+
     public static void main(String[] args) {
         System.out.println("\n*** WELCOME TO TIC TAC TOE GAME ***");
         dispayBoard(gameBoard);
@@ -17,6 +20,7 @@ public class TicTacToeGame {
         playerMove(gameBoard);
         computerMove(gameBoard);
         tossToPlay();
+        isWnnerOrTie(gameBoard);
     }
     public static void dispayBoard(char[][] gameBoard) {  ///Display the game board
         for (int row = 0; row < gameBoard.length; row++) {  /// for the rows
@@ -173,13 +177,108 @@ public class TicTacToeGame {
        int tossResult=(int) (Math.floor(Math.random()*10)%2);
        if ((tossResult==HEAD))
        {
+           System.out.println("Player Turn:");
            System.out.println("Player will start");
            playerMove(gameBoard);
        }
        else {
+           System.out.println("Computer Turn:");
            System.out.println("Computer will start");
            computerMove(gameBoard);
 
        }
     }
+    public static boolean isWnnerOrTie(char [][] gameboard){// Checking if win condition has met is to check all spaces in combination are samw
+
+        //Horizontal Win
+        if(gameboard[0][0] == 'X'&& gameboard[0][2] == 'X' && gameboard [0][4] == 'X' ){
+            System.out.println("Player Wins");
+            playerScore++;
+            return true;
+        }
+        if(gameboard[0][0] == 'O'&& gameboard[0][2] == 'O' && gameboard [0][4] == 'O' ){
+            System.out.println("Computer Wins");
+            computerScore++;
+            return true;
+        }
+        if(gameboard[1][0] == 'X'&& gameboard[1][2] == 'X' && gameboard [1][4] == 'X' ){
+            System.out.println("Player Wins");
+            playerScore++;
+            return true;
+        }
+        if(gameboard[1][0] == 'O'&& gameboard[1][2] == 'O' && gameboard [1][4] == 'O' ){
+            System.out.println("Computer Wins");
+            computerScore++;
+            return true;
+        }
+        if(gameboard[2][0] == 'X'&& gameboard[2][2] == 'X' && gameboard [2][4] == 'X' ){
+            System.out.println("Player Wins");
+            playerScore++;
+            return true;
+        }
+        if(gameboard[2][0] == 'O'&& gameboard[2][2] == 'O' && gameboard [2][4] == 'O' ) {
+            System.out.println("Computer Wins");
+            computerScore++;
+            return true;
+        }
+        //Vertical Wins
+        if(gameboard[0][0] == 'X'&& gameboard[1][0] == 'X' && gameboard [2][0] == 'X' ){
+            System.out.println("Player Wins");
+            playerScore++;
+            return true;
+        }
+        if(gameboard[0][0] == 'O'&& gameboard[1][0] == 'O' && gameboard [2][0] == 'O' ){
+            System.out.println("Computer Wins");
+            computerScore++;
+            return true;
+        }
+        if(gameboard[0][2] == 'X'&& gameboard[1][2] == 'X' && gameboard [2][2] == 'X' ){
+            System.out.println("Player Wins");
+            playerScore++;
+            return true;
+        }
+        if(gameboard[0][2] == 'O'&& gameboard[1][2] == 'O' && gameboard [2][2] == 'O' ){
+            System.out.println("Computer Wins");
+            computerScore++;
+            return true;
+        }
+        if(gameboard[0][4] == 'X'&& gameboard[1][4] == 'X' && gameboard [2][4] == 'X' ){
+            System.out.println("Player Wins");
+            playerScore++;
+            return true;
+        }
+        if(gameboard[0][4] == 'O'&& gameboard[1][4] == 'O' && gameboard [2][4] == 'O' ){
+            System.out.println("Computer Wins");
+            computerScore++;
+            return true;
+        }
+        //Diagonal Wins
+        if(gameboard[0][0] == 'X'&& gameboard[1][2] == 'X' && gameboard [2][4] == 'X' ){
+            System.out.println("Player Wins");
+            playerScore++;
+            return true;
+        }
+        if(gameboard[0][0] == 'O'&& gameboard[1][2] == 'O' && gameboard [2][4] == 'O' ){
+            System.out.println("Computer Wins");
+            computerScore++;
+            return true;
+        }
+        if(gameboard[2][0] == 'X'&& gameboard[1][2] == 'X' && gameboard [0][4] == 'X' ){
+            System.out.println("Player Wins");
+            playerScore++;
+            return true;
+        }
+        if(gameboard[2][0] == 'O'&& gameboard[1][2] == 'O' && gameboard [0][4] == 'O' ){
+            System.out.println("Computer Wins");
+            computerScore++;
+            return true;
+        }
+        if (gameboard[0][0] != '_' && gameboard[0][2] != '_' && gameboard[0][4] != '_' && gameboard[1][0] != '_' &&
+                gameboard[1][2] != '_' && gameboard[1][4] != '_' && gameboard[2][0] != ' ' && gameboard[2][2] != ' ' && gameboard[2][4] != ' ') {
+            System.out.println("Its a tie");
+            return true;
+        }
+        return false;
+    }
+
 }
